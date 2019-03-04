@@ -15,4 +15,38 @@ public class becaServiceTest extends BaseTest {
 
         Assert.assertEquals(1, users.size());
     }
+
+    @Test
+    public void shouldReturnTheSumOfTwoNumbers(){
+        int num1 = 5;
+        int num2 = 10;
+        int result = this.becaService.sum(num1, num2);
+
+        Assert.assertEquals(15, result);
+    }
+
+    @Test
+    public void shouldReturnTheSubstractionOfTwoNumbers(){
+        int num1 = 15;
+        int num2 = 10;
+        int result = this.becaService.minus(num1, num2);
+
+        Assert.assertEquals(5, result);
+    }
+
+    @Test
+    public void shouldReturnTheMultiplicationOfOneNumberAndFour(){
+        int num1 = 5;
+        int result = this.becaService.multiplyX4(num1);
+
+        Assert.assertEquals(20, result);
+    }
+
+    @Test
+    public void shouldReturnTheDivisionOfOneNumberAndFour(){
+        int num1 = 40;
+        int result = this.becaService.divideX4(num1);
+
+        Assert.assertEquals(10, result);
+    }
 }
