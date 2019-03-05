@@ -16,4 +16,6 @@ public interface IbecaService {
     int divideX4(int divide1);
 
     List<UserDO> getAllUsers();
+
+    void saveUser(UserDO userDO);
 }

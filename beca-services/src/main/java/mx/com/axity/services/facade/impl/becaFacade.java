@@ -2,7 +2,6 @@ package mx.com.axity.services.facade.impl;
 
 import mx.com.axity.commons.to.UserTO;
 import mx.com.axity.model.UserDO;
-import mx.com.axity.persistence.UserDAO;
 import mx.com.axity.services.facade.IbecaFacade;
 import mx.com.axity.services.service.IbecaService;
 import org.modelmapper.ModelMapper;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -39,5 +37,12 @@ public class becaFacade implements IbecaFacade {
         List<UserTO> result = this.modelMapper.map(userDOList, userTOType);
 
         return result;
+    }
+
+    @Override
+    public void saveUser(UserTO userTO) {
+        Type userDOType = new TypeToken<UserDO>() {}.getType();
+        UserDO dataSafe = this.modelMapper.map(userTO,userDOType);
+        this.becaService.saveUser(dataSafe);
     }
 }

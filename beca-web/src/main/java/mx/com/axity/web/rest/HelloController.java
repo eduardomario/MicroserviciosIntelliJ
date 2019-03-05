@@ -8,10 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true")
@@ -33,6 +31,13 @@ public class HelloController {
         LOG.info("Se invoca /users");
         List<UserTO> users = this.IbecaFacade.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/setUsers", method = RequestMethod.POST, produces = "application/json")
+    public ResponseEntity<List<UserTO>> saveUser(@RequestBody UserTO userTO) {
+        LOG.info("Se invoca /setUsers");
+        this.IbecaFacade.saveUser(userTO);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/json")

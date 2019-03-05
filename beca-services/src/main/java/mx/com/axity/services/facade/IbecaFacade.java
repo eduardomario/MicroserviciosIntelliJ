@@ -9,4 +9,6 @@ public interface IbecaFacade {
     int operation(int num1, int num2);
 
     List<UserTO> getAllUsers();
+
+    void saveUser(UserTO userTO);
 }
