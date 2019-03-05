@@ -1,17 +1,16 @@
 package mx.com.axity.services.service.impl;
 
-import mx.com.axity.commons.to.UserTO;
 import mx.com.axity.model.UserDO;
 import mx.com.axity.persistence.UserDAO;
 import mx.com.axity.services.service.IbecaService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.lang.reflect.Type;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class becaServiceImpl implements IbecaService {
@@ -50,7 +49,18 @@ public class becaServiceImpl implements IbecaService {
     }
 
     @Override
+    public Optional<UserDO> findUser(UserDO userDO) {
+        Optional<UserDO> result = this.userDAO.findById(userDO.getId());
+        return result;
+    }
+
+    @Override
     public void saveUser(UserDO userDO) {
         this.userDAO.save(userDO);
+    }
+
+    @Override
+    public void deleteUser(UserDO userDO) {
+        this.userDAO.deleteById(userDO.getId());
     }
 }

@@ -34,9 +34,16 @@ public class HelloController {
     }
 
     @RequestMapping(value = "/setUsers", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<List<UserTO>> saveUser(@RequestBody UserTO userTO) {
-        LOG.info("Se invoca /setUsers");
-        this.IbecaFacade.saveUser(userTO);
+        public ResponseEntity<List<UserTO>> saveUser(@RequestBody UserTO userTO) {
+            LOG.info("Se invoca /setUsers");
+            this.IbecaFacade.saveUser(userTO);
+            return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/deleteUsers", method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity<List<UserTO>> deleteUser(@RequestBody UserTO userTO) {
+        LOG.info("Se invoca /deleteUsers");
+        this.IbecaFacade.deleteUser(userTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

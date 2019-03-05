@@ -1,9 +1,9 @@
 package mx.com.axity.services.service;
 
-import mx.com.axity.commons.to.UserTO;
 import mx.com.axity.model.UserDO;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IbecaService {
 
@@ -17,5 +17,9 @@ public interface IbecaService {
 
     List<UserDO> getAllUsers();
 
+    Optional<UserDO> findUser(UserDO userDO);
+
     void saveUser(UserDO userDO);
+
+    void deleteUser(UserDO userDO);
 }
