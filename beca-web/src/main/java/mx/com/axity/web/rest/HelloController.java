@@ -2,6 +2,7 @@ package mx.com.axity.web.rest;
 
 import io.swagger.annotations.Api;
 import mx.com.axity.commons.to.UserTO;
+import mx.com.axity.model.UserDO;
 import mx.com.axity.services.facade.IbecaFacade;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", allowCredentials = "true")
 @RestController
@@ -41,9 +43,16 @@ public class HelloController {
     }
 
     @RequestMapping(value = "/deleteUsers", method = RequestMethod.DELETE, produces = "application/json")
-    public ResponseEntity<List<UserTO>> deleteUser(@RequestBody UserTO userTO) {
+    public ResponseEntity<List<UserTO>> deleteUser(@RequestParam Long id) {
         LOG.info("Se invoca /deleteUsers");
-        this.IbecaFacade.deleteUser(userTO);
+        this.IbecaFacade.deleteUser(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/findUsers", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity<List<UserTO>> findUser(@RequestBody UserTO userTO) {
+        LOG.info("Se invoca /findUsers");
+        UserTO user = this.IbecaFacade.findUser(userTO);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

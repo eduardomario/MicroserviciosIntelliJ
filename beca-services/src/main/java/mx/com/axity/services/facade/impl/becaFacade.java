@@ -48,17 +48,18 @@ public class becaFacade implements IbecaFacade {
     }
 
     @Override
-    public void deleteUser(UserTO userTO) {
-        Type userDOType = new TypeToken<UserDO>() {}.getType();
-        UserDO dataDelete = this.modelMapper.map(userTO,userDOType);
-        this.becaService.deleteUser(dataDelete);
+    public void deleteUser(Long id) {
+        this.becaService.deleteUser(id);
     }
 
     @Override
-    public Optional<UserDO> findUser(UserTO userTO) {
+    public UserTO findUser(UserTO userTO) {
+
         Type userDOType = new TypeToken<UserDO>() {}.getType();
-        UserDO dataDelete = this.modelMapper.map(userTO,userDOType);
-        Optional<UserDO> result = this.becaService.findUser(dataDelete);
-        return result;
+        Type userTOType = new TypeToken<UserTO>() {}.getType();
+        UserDO resultDO = this.modelMapper.map(userTO,userDOType);
+        Optional<UserDO> dataFound = this.becaService.findUser(resultDO);
+        UserTO resultTO = this.modelMapper.map(dataFound,userDOType);
+        return resultTO;
     }
 }

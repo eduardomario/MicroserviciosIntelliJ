@@ -60,7 +60,7 @@ public class becaServiceImpl implements IbecaService {
     }
 
     @Override
-    public void deleteUser(UserDO userDO) {
-        this.userDAO.deleteById(userDO.getId());
+    public void deleteUser(Long id) {
+        this.userDAO.deleteById(id);
     }
 }
