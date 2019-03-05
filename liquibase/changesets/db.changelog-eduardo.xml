@@ -6,7 +6,7 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
     <changeSet author="Eduardo" id="20190228-1">
         <createTable tableName="users">
-            <column name="id" type="INT">
+            <column name="id" type="NUMBER">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
             <column name="ds_name" type="VARCHAR(25)">
