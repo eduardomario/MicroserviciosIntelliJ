@@ -66,6 +66,7 @@ public class becaServiceImpl implements IbecaService {
 
     @Override
     public void updateUser(UserDO userDO) {
-        this.userDAO.save(userDO);
+
+        this.userDAO.save(this.userDAO.findById(userDO.getId()).get());
     }
 }
