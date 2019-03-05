@@ -14,5 +14,7 @@ public interface IbecaFacade {
 
     void deleteUser(Long id);
 
-    UserTO findUser(UserTO userTO);
+    UserTO findUser(Long id);
+
+    void updateUser(UserTO userTO);
 }

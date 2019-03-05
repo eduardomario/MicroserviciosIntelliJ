@@ -53,13 +53,18 @@ public class becaFacade implements IbecaFacade {
     }
 
     @Override
-    public UserTO findUser(UserTO userTO) {
+    public UserTO findUser(Long id) {
+        UserDO resultDO = this.becaService.findUser(id);
 
-        Type userDOType = new TypeToken<UserDO>() {}.getType();
         Type userTOType = new TypeToken<UserTO>() {}.getType();
-        UserDO resultDO = this.modelMapper.map(userTO,userDOType);
-        Optional<UserDO> dataFound = this.becaService.findUser(resultDO);
-        UserTO resultTO = this.modelMapper.map(dataFound,userDOType);
+        UserTO resultTO = this.modelMapper.map(resultDO, userTOType);
         return resultTO;
+    }
+
+    @Override
+    public void updateUser(UserTO userTO) {
+        Type userDOType = new TypeToken<UserDO>() {}.getType();
+        UserDO dataSafe = this.modelMapper.map(userTO,userDOType);
+        this.becaService.saveUser(dataSafe);
     }
 }
